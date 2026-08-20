@@ -14,7 +14,143 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      departments: {
+        Row: {
+          avg_hours: number
+          categories: string[]
+          created_at: string
+          id: string
+          name: string
+          staff: string[]
+        }
+        Insert: {
+          avg_hours?: number
+          categories?: string[]
+          created_at?: string
+          id?: string
+          name: string
+          staff?: string[]
+        }
+        Update: {
+          avg_hours?: number
+          categories?: string[]
+          created_at?: string
+          id?: string
+          name?: string
+          staff?: string[]
+        }
+        Relationships: []
+      }
+      issue_activity: {
+        Row: {
+          action: string
+          created_at: string
+          id: string
+          issue_ref: string
+          message: string
+          new_status: string | null
+          previous_status: string | null
+          updated_by: string
+        }
+        Insert: {
+          action: string
+          created_at?: string
+          id?: string
+          issue_ref: string
+          message?: string
+          new_status?: string | null
+          previous_status?: string | null
+          updated_by?: string
+        }
+        Update: {
+          action?: string
+          created_at?: string
+          id?: string
+          issue_ref?: string
+          message?: string
+          new_status?: string | null
+          previous_status?: string | null
+          updated_by?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "issue_activity_issue_ref_fkey"
+            columns: ["issue_ref"]
+            isOneToOne: false
+            referencedRelation: "issues"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      issues: {
+        Row: {
+          assigned_staff: string | null
+          building: string
+          category: string
+          created_at: string
+          department: string
+          description: string
+          expected_resolution: string | null
+          floor: string
+          id: string
+          image_url: string | null
+          internal_note: string | null
+          issue_id: string
+          landmark: string
+          priority: string
+          public_update: string | null
+          resolved_at: string | null
+          status: string
+          submitted_by: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          assigned_staff?: string | null
+          building?: string
+          category: string
+          created_at?: string
+          department?: string
+          description?: string
+          expected_resolution?: string | null
+          floor?: string
+          id?: string
+          image_url?: string | null
+          internal_note?: string | null
+          issue_id: string
+          landmark?: string
+          priority?: string
+          public_update?: string | null
+          resolved_at?: string | null
+          status?: string
+          submitted_by?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          assigned_staff?: string | null
+          building?: string
+          category?: string
+          created_at?: string
+          department?: string
+          description?: string
+          expected_resolution?: string | null
+          floor?: string
+          id?: string
+          image_url?: string | null
+          internal_note?: string | null
+          issue_id?: string
+          landmark?: string
+          priority?: string
+          public_update?: string | null
+          resolved_at?: string | null
+          status?: string
+          submitted_by?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
